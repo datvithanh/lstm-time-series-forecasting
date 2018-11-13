@@ -23,7 +23,7 @@ def main():
     # filenames = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6']
     filenames = ['C1']
     # optimizers = ['rmsprop', 'adagrad', 'adadelta', 'adam']
-    optimizers = ['rmsprop']
+    optimizers = ['adam']
     i = 1
     for filename in filenames:
         data = DataLoader(root + filename + x_dir, root+filename+y_dir)
@@ -57,9 +57,9 @@ def main():
             plt.plot(yhat.ravel(), color='red')
             del model
         plt.title(filename)
-        # plt.ylabel('loss')
-        # plt.xlabel('epoch')
-        # plt.legend(['rmsprop', 'adagrad', 'adadelta', 'adam'], loc='upper right')
+        plt.ylabel('loss')
+        plt.xlabel('epoch')
+        plt.legend(['rmsprop', 'adagrad', 'adadelta', 'adam'], loc='upper right')
     
     plt.show()
 if __name__ == '__main__':

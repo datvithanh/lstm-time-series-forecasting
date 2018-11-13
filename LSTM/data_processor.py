@@ -23,6 +23,9 @@ class DataLoader():
             train_y.append(self.y[start:end])
             # print(i*self.seq_len, (i+1)*self.seq_len)
         return np.array(train_x), np.array(train_y)
+        
+    def get_data(self):
+        return np.array(self.x), np.array(self.y)
 
     def _next_window(self, i, seq_len, normalise):
         '''Generates the next data window from the given index location i'''

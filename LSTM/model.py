@@ -17,12 +17,12 @@ class Model():
 	def build_model(self, input_dim, optimizer):
 		timer = Timer()
 		timer.start()
-		self.model.add(LSTM(1, input_shape=(30, input_dim), return_sequences=True))
+		self.model.add(LSTM(1, input_shape=(1, 30, input_dim), stateful=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
 
-		self.model.add(Dense(1))
+		self.model.add(Dense(30))
 
 		self.model.compile(loss='mse', optimizer=optimizer)
 
@@ -33,11 +33,14 @@ class Model():
 		timer = Timer()
 		timer.start()
 		print('[Model] Training Started')
-		history = self.model.fit(
-			x, 
-			y,
-			epochs=epochs
-		)		
+		for i in range(epochs):
+			history = self.model.fit(
+				x, 
+				y,
+				epochs=1,
+				batch_size=1
+			)
+			self.model.reset_states()
 		yhat=self.model.predict(x)
 		self.model.save(save_dir +  '%s-%s.h5' % (data, optimizer))
 		timer.stop()
