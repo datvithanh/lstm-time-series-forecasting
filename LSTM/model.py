@@ -17,7 +17,7 @@ class Model():
 	def build_model(self, input_dim, optimizer):
 		timer = Timer()
 		timer.start()
-		self.model.add(LSTM(1, input_shape=(1, 30, input_dim), stateful=True))
+		self.model.add(LSTM(1, dropout=0.3, input_shape=(1, 30, input_dim), stateful=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
 		# self.model.add(LSTM((1), input_shape=(30,1), return_sequences=True))
