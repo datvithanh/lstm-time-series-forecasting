@@ -17,7 +17,6 @@ for neuron in neurons:
             data_path + filename + "/Training_Input.txt", data_path + filename + "/Training_Target.txt")
         test_data = DataLoader(data_path + filename + "/Testing_Input.txt",
                                data_path + filename + "/Testing_Target.txt")
-
         x_train, y_train = training_data.get_data()
         x_test, y_test = test_data.get_data()
 
@@ -27,6 +26,12 @@ for neuron in neurons:
             print("[Model] data: {}, optimizer: {}, neuron: {}".format(
                 filename, optimizer, str(neuron)))
             scaler, train_scaled, test_scaled = scale(train, test)
+            print(np.max(train_scaled[:,0]))
+            print(np.max(train_scaled[:,1]))
+            print(np.max(train_scaled[:,2]))
+            print(np.max(train[:,0]))
+            print(np.max(train[:,1]))
+            print(np.max(train[:,2]))
             lstm_model, history = fit_lstm(
                 train_scaled, 1, 50, neuron, optimizer, 0.1)
 
